@@ -20,8 +20,8 @@
    
    def remove_entry(name, phone_number, email)
     entries.each do |entry|
-     if name == entry.name && email == entry.email && phone_number = entry.phone_number
-       entries.remove(entry);
+     if name == entry.name && email == entry.email && phone_number == entry.phone_number
+       entries.delete(entry)
      end
     end
    end
