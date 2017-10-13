@@ -14,7 +14,8 @@
      puts "2 - Create an entry"
      puts "3 - Search for an entry"
      puts "4 - Import entries from a CSV"
-     puts "5 - Exit"
+     puts "5 - View Entry Number n"
+     puts "6 - Exit"
      print "Enter your selection: "
  
      selection = gets.to_i
@@ -37,6 +38,10 @@
          read_csv
          main_menu
        when 5
+         system "clear"
+         entry_by_index
+       when 6
+         system "clear"
          puts "Good-bye!"
          exit(0)
        else
@@ -57,7 +62,6 @@
    end
  
    def create_entry
-       
      system "clear"
      puts "New AddressBloc Entry"
      print "Name: "
@@ -79,6 +83,24 @@
    def read_csv
    end
    
+   def entry_by_index
+      
+      print "Enter the Entry Number: "
+      n = gets.chomp
+      if n.to_i > address_book.entries.length
+        
+        puts "#{n} is not a valid input"
+        entry_by_index
+      else
+        address_book.entries.each_with_index do |entry, index|
+          if n.to_i == index+1
+            puts entry
+            main_menu
+          end 
+        end
+      end
+   end  
+   
    def entry_submenu(entry)
      puts "n - next entry"
      puts "d - delete entry"
@@ -93,12 +115,13 @@
        when "d"
        when "e"
        when "m"
-         system "clear"
-         main_menu
-       else
-         system "clear"
-         puts "#{selection} is not a valid input"
-         entry_submenu(entry)
+       system "clear"
+       main_menu
+     else
+       system "clear"
+       puts "#{selection} is not a valid input"
+       entry_submenu(entry)
      end
    end
  end
+ 
