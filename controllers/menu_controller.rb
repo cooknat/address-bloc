@@ -14,7 +14,8 @@
      puts "2 - Create an entry"
      puts "3 - Search for an entry"
      puts "4 - Import entries from a CSV"
-     puts "5 - Exit"
+     puts "5 - Destroy all"
+     puts "6 - Exit"
      print "Enter your selection: "
  
      selection = gets.to_i
@@ -36,7 +37,10 @@
          system "clear"
          read_csv
          main_menu
-       when 5
+       when 5  
+         delete_all
+         main_menu
+       when 6
          puts "Good-bye!"
          exit(0)
        else
@@ -117,6 +121,11 @@
      address_book.entries.delete(entry)
      puts "#{entry.name} has been deleted"
    end
+   
+   def delete_all
+     address_book.entries.clear
+     puts "All entries deleted"
+   end   
    
     def edit_entry(entry)
      print "Updated name: "
